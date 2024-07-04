@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+group 'com.github.artemy.code-linting-demo'
+version '0.1-SNAPSHOT'
+
+configurations {
+    checkstyleRules
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    checkstyleRules 'com.github.artemy.code-linting-demo:rules-artifact:0.1-SNAPSHOT'
+}
+
+checkstyle {
+    toolVersion '10.17.0'
+    config = resources.text.fromArchiveEntry(configurations.checkstyleRules, 'checkstyle.xml')
+}
